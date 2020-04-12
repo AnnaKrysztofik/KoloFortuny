@@ -1,14 +1,9 @@
 import kolomanager.KoloManager;
-import kolomanager.KoloManagerInterface;
 import models.Gracz;
 import planszahaslo.PlanszaHaslo;
-import planszahaslo.PlanszaHasloInterface;
 import providers.HasloProvider;
-import providers.HasloProviderInterface;
 import ui.UIInterface;
 import ui.UserInterface;
-
-import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) {

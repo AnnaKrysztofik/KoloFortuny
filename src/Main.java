@@ -13,8 +13,8 @@ public class Main {
         PlanszaHaslo planszaHaslo = new PlanszaHaslo(hasloProvider);
         KoloManager koloManager = new KoloManager();
 
-        Gracz gracz1 = new Gracz("Piotr", 0);
-        Gracz gracz2 = new Gracz("Paweł", 0);
+        Gracz gracz1 = new Gracz("Kasia", 0);
+        Gracz gracz2 = new Gracz("Basia", 0);
 
         ManagerGry managerGry = new ManagerGry(ui, planszaHaslo, koloManager, gracz1, gracz2);
 

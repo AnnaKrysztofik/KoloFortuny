@@ -12,6 +12,9 @@ public class Player {
         this.points = points;
     }
 
+    public Player() {
+    }
+
     public String getName() {
         return name;
     }
@@ -31,6 +34,10 @@ public class Player {
     public UserViewModel buildViewModel()
     {
         return new UserViewModel(this.name, this.points);
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
 

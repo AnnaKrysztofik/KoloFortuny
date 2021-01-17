@@ -101,4 +101,19 @@ public class UserInterface implements UIInterface {
     public void displayRecord(Player theBestPlayer) {
         System.out.println("Rekord: " + theBestPlayer.getPoints() + "    " + theBestPlayer.getName());
     }
+
+    @Override
+    public void yoursName(Player player1, Player player2){
+        name("pierwszego", player1);
+        name("drugiego", player2);
+    }
+
+
+    @Override
+    public void name(String which, Player player){
+        System.out.println("Podaj imię " + which + " gracza:");
+        Scanner scanner = new Scanner(System.in);
+        player.setName(scanner.next());
+        player.setPoints(0);
+    }
 }

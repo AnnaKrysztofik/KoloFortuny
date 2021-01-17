@@ -21,7 +21,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void ileRazy_should_return_iloscWystapienDanejLiteryWHasle_Test() {
+    public void howManyTimesReplaysLetterInSentence_Test() {
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("kjhkffgd a lrd ffd aaa");
 
@@ -33,7 +33,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void howManyTimes_should_return_iloscWystapienDanejLiteryWHasleDuzeLitery_Test() {
+    public void howManyTimesReplaysLetterInSentenceWithUpperCase_Test() {
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("kjhkffgd A lrd ffd aAaa");
 
@@ -45,7 +45,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void howMany_should_return_iloscWystapienDanejLiteryWHasleHasloJestNull_Test() {
+    public void howManyTimesReplaysLetterInSentenceEqualsNull_Test() {
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase(null);
 
@@ -57,7 +57,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void howMany_should_return_zeroWhenSpacje_Test() {
+    public void howManyTimesReplaysLetterInSentenceWithALotOfSpaces_Test() {
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("kjhkffgd A lrd ffd aAaa");
 
@@ -70,7 +70,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
 
 
     @Test
-    public void czyLiterka_should_return_TakJesliZawiera_Test() {
+    public void ifTheSentenceIncludeTheLetter_Test() {
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("ala");
 
@@ -82,7 +82,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void czyJestWygrana_Test() {
+    public void ifIsTheWin_Test() {
 
         // Arrange
 
@@ -99,7 +99,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void czyJestWygrana_should_return_false_Test() {
+    public void ifIsNotTheWin_Test() {
 
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("ala");
@@ -146,7 +146,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void wygrana_listaZawieraWszystkieLiterki_Test() {
+    public void theWinListOfAllLetters_Test() {
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("KOTA");
         wheelOfFortunePuzzleBoard.addToList("A");
@@ -164,7 +164,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
 
     }
     @Test
-    public void wygrana_listaZawieraWszystkieLiterkiZeSpacja_Test() {
+    public void theWinListOfAllLettersAndSpaces_Test() {
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("KOTA K");
         wheelOfFortunePuzzleBoard.addToList("A");
@@ -182,7 +182,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
 
     }
     @Test
-    public void wygrana_listaZawieraNieWszystkieLiterki_Test() {
+    public void theWinListOfNotAllLetters_Test() {
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("KOTA K");
         wheelOfFortunePuzzleBoard.addToList("A");
@@ -199,7 +199,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
 
     }
     @Test
-    public void wygrana_listaZawieraNieWszystkieLiterkiFalse_Test() {
+    public void theWinListOfNotAllLetters2_Test() {
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("KOTA KI");
         wheelOfFortunePuzzleBoard.addToList("A");
@@ -218,7 +218,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void odgadnijHasloPoprawne_Test(){
+    public void guessCorrectPhrase_Test(){
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("ALA MA KOTA");
 
@@ -230,7 +230,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void odgadnijHasloPoprawneMalelitery_Test(){
+    public void guessCorrectPhraseLowerCase_Test(){
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("ALA MA KOTA");
 
@@ -242,7 +242,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void odgadnijHasloFalse_Test(){
+    public void guessIncorrectPhrase_Test(){
         // Arrange
         wheelOfFortunePuzzleBoard.setPhrase("ALA MA KOTA");
 
@@ -254,7 +254,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
     }
 
     @Test
-    public void czySamogloskaA_Test(){
+    public void ifVowelUpperCase_Test(){
         // Arrange
 
         // Act
@@ -264,7 +264,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
         assertTrue(result);
     }
     @Test
-    public void czySamogloskaa_Test(){
+    public void ifVowelLowerCase_Test(){
         // Arrange
 
         // Act
@@ -274,7 +274,7 @@ public class WheelModelOfFortunePuzzleBoardTest {
         assertTrue(result);
     }
     @Test
-    public void czySamogloskaB_Test(){
+    public void ifVowelFalse_Test(){
         // Arrange
 
         // Act

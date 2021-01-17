@@ -2,9 +2,12 @@ package main;
 
 import main.models.Player;
 import main.models.WheelModel;
+import main.providers.PhraseProvider;
 import main.ui.UIInterface;
 import main.ui.UserInterface;
+import main.wheelManager.WheelManager;
 import main.wheelManager.WheelManagerInterface;
+import main.wheelOfFortunePuzzleBoard.WheelOfFortunePuzzleBoard;
 import main.wheelOfFortunePuzzleBoard.WheelOfFortunePuzzleBoardInterface;
 
 public class GameManager {
@@ -14,19 +17,30 @@ public class GameManager {
     private WheelManagerInterface wheel;
     private Player player1;
     private Player player2;
-
+    private PhraseProvider phraseProvider;
     private Player current;
 
-    public GameManager(UIInterface ui, WheelOfFortunePuzzleBoardInterface phrase, WheelManagerInterface wheelManager,
-                       Player player1, Player player2)
-    {
+    public GameManager(UIInterface ui, WheelOfFortunePuzzleBoardInterface phrase, WheelManagerInterface wheel, Player player1, Player player2, PhraseProvider phraseProvider, Player current) {
+        this.ui = ui;
         this.phrase = phrase;
-        this.wheel = wheelManager;
+        this.wheel = wheel;
         this.player1 = player1;
         this.player2 = player2;
-        this.current = player1;
-        this.ui = ui;
+        this.phraseProvider = phraseProvider;
+        this.current = current;
+    }
+
+    public GameManager() {
+        player1 = new Player();
+        player2 = new Player();
+
+        this.phraseProvider = new PhraseProvider();
+        this.phrase = new WheelOfFortunePuzzleBoard(phraseProvider);
+        this.wheel = new WheelManager();
+        this.ui = new UserInterface();
      }
+
+
 
     private void nextPlayer()
     {
@@ -38,6 +52,9 @@ public class GameManager {
     public void courseOfTheGame()
     {
         ui.displayTheSplashScreen();
+        ui.yoursName(player1, player2);
+        current = player1;
+
         ui.displayGameBoard(phrase.buildViewModel());
         boolean isGameEnd = false;
         do {

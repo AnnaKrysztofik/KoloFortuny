@@ -29,7 +29,7 @@ public class WheelManagerTest {
     }
 
     @Test
-    public void spinTheWheel_should_return_propperString()
+    public void spinTheWheel_should_return_properString()
     {
         // Arrange
         WheelManager wheelManager = new WheelManager();

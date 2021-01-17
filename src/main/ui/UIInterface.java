@@ -18,4 +18,6 @@ public interface UIInterface {
     String guessThePhrase();
     void endOfFirstRound(Player player1, Player player2);
     void displayRecord(Player najlepszyPlayer);
+    void yoursName(Player player1, Player player2);
+    void name(String which, Player player);
 }

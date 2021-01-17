@@ -1,97 +1,77 @@
 package test;
 
 import main.GameManager;
-import main.wheelManager.WheelManagerFake;
-import main.wheelManager.WheelManagerInterface;
-import main.models.WheelModel;
 import main.models.Player;
-import org.junit.Assert;
-import org.junit.Test;
-import main.wheelOfFortunePuzzleBoard.WheelOfFortunePuzzleBoard;
-import main.wheelOfFortunePuzzleBoard.WheelOfFortunePuzzleBoardInterface;
+import main.models.WheelModel;
 import main.providers.PhraseProvider;
 import main.providers.PhraseProviderFake;
 import main.ui.UIInterface;
 import main.ui.UserInterfaceFake;
+import main.wheelManager.WheelManagerFake;
+import main.wheelManager.WheelManagerInterface;
+import main.wheelOfFortunePuzzleBoard.WheelOfFortunePuzzleBoard;
+import main.wheelOfFortunePuzzleBoard.WheelOfFortunePuzzleBoardInterface;
+import org.junit.Test;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class GameManagerTest {
 
-    @Test
-    public void player1IsCurrentAtTheBeginning_Test()
-    {
-        // Arrange
-        UIInterface ui = new UserInterfaceFake();
-        WheelManagerInterface wheelManager = new WheelManagerFake();
-        WheelOfFortunePuzzleBoardInterface gameBoard = new WheelOfFortunePuzzleBoard(new PhraseProvider());
-        Player player1 = new Player("Ania", 0);
-        Player player2 = new Player("Jacek", 0);
-
-        // Act
-        GameManager gameManager = new GameManager(ui, gameBoard, wheelManager, player1, player2);
-
-        // Assert
-        Assert.assertEquals(player1, gameManager.getCurrent());
-    }
+    UIInterface ui = new UserInterfaceFake();
+    Player current = new Player("Ania",0);
+    PhraseProvider phraseProvider = new PhraseProviderFake();
+    WheelOfFortunePuzzleBoardInterface phrase = new WheelOfFortunePuzzleBoard(phraseProvider);
+    WheelManagerInterface wheelManager = new WheelManagerFake();
 
     @Test
-    public void stopScenario_Test()
-    {
+    public void countPointsForLetterL(){
         // Arrange
-        PhraseProvider phraseProvider = new PhraseProviderFake();
-        UserInterfaceFake ui = new UserInterfaceFake();
-        WheelManagerFake wheelManagerFake = new WheelManagerFake();
-        WheelOfFortunePuzzleBoard wheelOfFortunePuzzleBoard = new WheelOfFortunePuzzleBoard(phraseProvider);
-        Player player1 = new Player("Ania", 100);
-        Player player2 = new Player("Jacek", 0);
-
-        ui.setWheelOrGuess(List.of(1, 2));
-        ui.setPhrase("ALA MA KOTA");
-        wheelManagerFake.setWheelModel(List.of(
-                new WheelModel(true, false, 0,"BANKRUT")));
-
-        GameManager gameManager = new GameManager(ui, wheelOfFortunePuzzleBoard, wheelManagerFake, player1, player2);
+        var letter = "L";
+        var chose = new WheelModel(false, false, 1000,"");
+        GameManager gameManager = new GameManager(ui, phrase, wheelManager, current, new Player(), phraseProvider, current);
 
         // Act
-        gameManager.courseOfTheGame();
-
+        gameManager.contestant(letter, chose);
         // Assert
-        assertEquals(player2, gameManager.getCurrent());
-        assertEquals(0, player1.getPoints());
-
-
+        assertEquals(1000,current.getPoints());
     }
-
     @Test
-    public void vowelScenario_Test()
-    {
+    public void countPointsForLetterA(){
         // Arrange
-        var phraseProvider2 = new PhraseProviderFake();
-        UserInterfaceFake ui2 = new UserInterfaceFake();
-        WheelManagerFake koloManager2 = new WheelManagerFake();
-        WheelOfFortunePuzzleBoard wheelOfFortunePuzzleBoard2 = new WheelOfFortunePuzzleBoard(phraseProvider2);
-        Player player3 = new Player("Ania", 0);
-        Player player4 = new Player("Jacek", 0);
-
-        ui2.setWheelOrGuess(List.of(1, 1, 2));
-        ui2.setLetters(List.of("L","A"));
-        ui2.setPhrase("ALA MA KOTA");
-
-        koloManager2.setWheelModel(List.of(
-                new WheelModel(false, false, 1000,""),
-                new WheelModel(false, false, 1000,"")));
-
-        GameManager gameManager2 = new GameManager(ui2, wheelOfFortunePuzzleBoard2, koloManager2, player3, player4);
+        var letter = "A";
+        var chose = new WheelModel(false, false, 100,"");
+        GameManager gameManager = new GameManager(ui, phrase, wheelManager, current, new Player(), phraseProvider, current);
 
         // Act
-        gameManager2.courseOfTheGame();
-
+        gameManager.contestant(letter, chose);
         // Assert
-        assertEquals(player3, gameManager2.getCurrent());
-        assertEquals(800, player3.getPoints());
+        assertEquals(400,current.getPoints());
     }
+    @Test
+    public void countPointsForBankrupt(){
+        // Arrange
+        var letter = "L";
+        var chose = new WheelModel(true, false, 0,"");
+        GameManager gameManager = new GameManager(ui, phrase, wheelManager, current, new Player(), phraseProvider, current);
+
+        // Act
+        gameManager.contestant(letter, chose);
+        // Assert
+        assertEquals(0,current.getPoints());
+    }
+    @Test
+    public void countPointsForStop(){
+        // Arrange
+        var letter = "L";
+        var chose = new WheelModel(true, false, 0,"");
+        Player player = new Player("Kasia", 400);
+        GameManager gameManager = new GameManager(ui, phrase, wheelManager, player, new Player(), phraseProvider, player);
+
+        // Act
+        gameManager.contestant(letter, chose);
+        // Assert
+        assertEquals(400,player.getPoints());
+    }
+
 
 }

@@ -1,24 +1,25 @@
-import kolomanager.KoloManager;
-import models.Gracz;
-import planszahaslo.PlanszaHaslo;
-import providers.HasloProvider;
-import ui.UIInterface;
-import ui.UserInterface;
+import main.GameManager;
+import main.models.Player;
+import main.providers.PhraseProvider;
+import main.ui.UIInterface;
+import main.ui.UserInterface;
+import main.wheelManager.WheelManager;
+import main.wheelOfFortunePuzzleBoard.WheelOfFortunePuzzleBoard;
 
 public class Main {
     public static void main(String[] args) {
 
-        HasloProvider hasloProvider = new HasloProvider();
+        PhraseProvider phraseProvider = new PhraseProvider();
         UIInterface ui = new UserInterface();
-        PlanszaHaslo planszaHaslo = new PlanszaHaslo(hasloProvider);
-        KoloManager koloManager = new KoloManager();
+        WheelOfFortunePuzzleBoard wheelOfFortunePuzzleBoard = new WheelOfFortunePuzzleBoard(phraseProvider);
+        WheelManager wheelManager = new WheelManager();
 
-        Gracz gracz1 = new Gracz("Kasia", 0);
-        Gracz gracz2 = new Gracz("Basia", 0);
+        Player gracz1 = new Player("Kasia", 0);
+        Player gracz2 = new Player("Basia", 0);
 
-        ManagerGry managerGry = new ManagerGry(ui, planszaHaslo, koloManager, gracz1, gracz2);
+        GameManager gameManager = new GameManager(ui, wheelOfFortunePuzzleBoard, wheelManager, gracz1, gracz2);
 
-        managerGry.przebiegGry();
+        gameManager.courseOfTheGame();
     }
 }
 

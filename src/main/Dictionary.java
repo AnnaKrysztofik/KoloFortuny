@@ -1,3 +1,5 @@
+package main;
+
 public class Dictionary {
 
     public static final String TRACISZ_RUCH_MSG = "TRACISZ RUCH";

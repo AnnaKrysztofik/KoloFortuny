@@ -1,10 +1,10 @@
-package viewModels;
+package main.viewModels;
 
-public class ElementKolaViewModel {
+public class WheelElementViewModel {
 
     private String screenValue;
 
-    public ElementKolaViewModel(String screenValue) {
+    public WheelElementViewModel(String screenValue) {
         this.screenValue = screenValue;
     }
 
